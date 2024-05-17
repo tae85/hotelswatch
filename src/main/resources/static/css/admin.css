@@ -1,0 +1,425 @@
+:root {
+  /* 포인트컬러 */
+  --primary-color: #0171bb;
+  --secondary-color: #2c4162;
+  /* 글자 공통 컬러 */
+  --text-color-100: #fff;
+  --text-color-200: #eee;
+  --text-color-300: #ddd;
+  --text-color-400: #ccc;
+  --text-color-500: #666;
+  --text-color-600: #222;
+  --text-color-900: #000;
+}
+.admin_page #header {
+	left: 200px;
+	width: calc(100% - 200px);
+}
+.admin_page #header .inner {
+	max-width: none;
+	padding: 0 60px;
+}
+.admin_page .snb_wrap {
+  background: #333;
+  position: fixed;
+  z-index: 10000;
+  height: 100%;
+  width: 200px;
+}
+.admin_page .snb {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 20px 0;
+}
+.admin_page .snb li {
+  width: 100%;
+  text-align: center;
+}
+.admin_page .snb li.active {
+  background: var(--primary-color);
+}
+.admin_page .snb li.active a {
+  color: var(--text-color-100);
+}
+.admin_page .snb li a {
+  display: block;
+  padding: 10px;
+  color: #666;
+  font-size: 16px;
+}
+
+.admin_page .sub_container {
+  padding-top: 80px;
+  margin-left: 200px;
+}
+
+.admin_page .admin_tit {
+  display: block;
+  font-weight: 700;
+  font-size: 20px;
+  margin-bottom: 80px;
+}
+
+
+.admin_page .contents .inner {
+  padding: 100px 16px 0;
+}
+.admin_page .member_top {
+  display: flex;
+  justify-content: space-between;
+}
+.admin_page .search_wrap {
+  display: flex;
+  gap: 0 10px;
+  margin-bottom: 40px;
+}
+.admin_page .search_wrap .filter_wrap {
+  position: relative;
+}
+.admin_page .search_wrap .filter_btn {
+  padding: 6px 16px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  background: none;
+}
+.admin_page .search_wrap .filter_list {
+  position: absolute;
+  top: 46px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #fff;
+  border-radius: 4px;
+  box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s;
+}
+.admin_page .search_wrap .filter_list.on {
+  opacity: 1;
+  visibility: visible;
+  transition: all 0.3s;
+}
+.admin_page .search_wrap .filter_list .item {
+  width: 100px;
+  padding: 10px 10px;
+  cursor: pointer;
+}
+.admin_page .search_wrap .filter_list .item:hover {
+  background: #eee;
+}
+.admin_page .search_wrap .search_field {
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  width: 300px;
+  padding: 6px 10px;
+}
+.admin_page .search_wrap .search_btn {
+  width: 34px;
+  height: 34px;
+  background: var(--primary-color) url("../images/search.svg") no-repeat center / 20px;
+  border: 1px solid var(--primary-color);
+  border-radius: 4px;
+}
+.admin_page .add_btn {
+  background: var(--primary-color);
+  color: var(--text-color-100);
+  height: 34px;
+  padding: 0 10px;
+  border: none;
+  border-radius: 4px;
+}
+.admin_page .contents .member_list th, td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: center;
+}
+.admin_page .contents .member_list th {
+  background: #eee;
+}
+.admin_page .contents .member_list td {
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden; 
+}
+.admin_page .contents .member_list td a {
+  color: var(--text-color-600);
+  text-decoration: underline;
+}
+.admin_page .paging {
+  padding: 40px 0 0;
+  display: flex;
+  justify-content: center;
+  gap: 0 6px;
+}
+.admin_page .paging_btn {
+  border: none;
+  border-radius: 4px;
+  background: none;
+  color: #666;
+  padding: 10px;
+}
+.admin_page .paging_btn.active {
+  color: #222;
+  font-weight: 700;
+}
+
+.admin_page .contents.active {
+  display: block;
+}
+.admin_page .contents {
+  display: none;
+}
+
+
+
+.member_detail_page .inner {
+  padding: 40px;
+}
+.member_detail_page .info_top {
+  margin-bottom: 60px;
+}
+.member_detail_page .info_top .top {
+  display: flex;
+  gap: 0 20px;
+  margin-bottom: 20px;
+}
+.member_detail_page .info_top .profile_img {
+  width: 200px;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 100px;
+  overflow: hidden; 
+}
+.member_detail_page .info_top .info_tb {
+  width: 400px;
+}
+.member_detail_page .info_top .info_tb th {
+  background: #eee;
+}
+.member_detail_page .info_top .info_tb th, td {
+  border: 1px solid #ddd;
+}
+.member_detail_page .info_top .info_tb td {
+  padding: 0;
+}
+.member_detail_page .info_top .info_tb td input[type="text"] {
+  padding: 0 10px;
+  width: 100%;
+  text-align: center;
+  outline: none;
+  border: none;
+}
+.member_detail_page .info_top .info_tb td input[type="text"]:focus {
+  border: none;
+}
+.member_detail_page .info_top .tb_btn {
+  width: 100%;
+  color: var(--primary-color);
+  background: none;
+  border: none;
+}
+.member_detail_page .info_top .tb_btn.del {
+  color: #e44848;
+}
+.member_detail_page .info_top .btn_wrap {
+  margin-left: auto;
+  display: flex;
+  gap: 0 10px;
+}
+.member_detail_page .info_top .btn_wrap button {
+  border: none;
+  border-radius: 4px;
+  background: #e44848;
+  color: var(--text-color-100);
+  padding: 6px 16px;
+  height: 40px;
+}
+.member_detail_page .info_top .btn_wrap .edit_btn {
+  background: var(--primary-color);
+}
+.member_detail_page .info_top .acc_tb {
+  width: 620px;
+}
+.member_detail_page .info_top .acc_tb th {
+  width: 200px;
+  background: #eee;
+}
+.member_detail_page .info_top .acc_tb th, td {
+  border: 1px solid #ddd;
+}
+.member_detail_page .info_top .acc_tb td input[type="text"] {
+  border: none;
+  outline: none;
+  width: 100%;
+  padding: 0 10px;
+  text-align: center;
+}
+.member_detail_page .info_top .btn_wrap {
+  text-align: right;
+}
+.member_detail_page .info_top .bottom {
+  margin-bottom: 20px;
+}
+.member_detail_page .info_top .save_btn {
+  display: block;
+  margin-left: auto;
+  border: none;
+  border-radius: 4px;
+  background: var(--primary-color);
+  color: var(--text-color-100);
+  padding: 6px 20px;
+  height: 40px;
+}
+
+.member_detail_page .info_bottom .reserve_tb th {
+  background: #eee;
+}
+.member_detail_page .info_bottom .reserve_tb th, td {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+
+
+.hotel_detail_page .inner {
+  padding: 40px;
+}
+.hotel_detail_page .hotel_info {
+  display: flex;
+  gap: 0 20px;
+  margin-bottom: 40px;
+}
+.hotel_detail_page .hotel_info img {
+  width: 260px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+.hotel_detail_page .hotel_info .hotel_tb {
+  width: 500px;
+}
+.hotel_detail_page .hotel_info .hotel_tb th {
+  background: #eee;
+  width: 140px;
+}
+.hotel_detail_page .hotel_info .hotel_tb th, td {
+  border: 1px solid #ddd;
+}
+.hotel_detail_page .hotel_info .hotel_tb td input[type="text"] {
+  width: 100%;
+  padding: 0 10px;
+  text-align: center;
+  border: none;
+  outline: none;
+}
+.hotel_detail_page .hotel_info .btn_wrap {
+  margin-left: auto;
+}
+.hotel_detail_page .hotel_info button {
+  display: block;
+  margin-left: auto;
+  padding: 6px 16px;
+  height: 40px;
+  background: var(--primary-color);
+  border: none;
+  border-radius: 4px;
+  color: var(--text-color-100);
+}
+.hotel_detail_page .hotel_info .edit_btn {
+  background: #333;
+}
+.hotel_detail_page .room_info {
+  border-top: 2px solid #ddd;
+  padding-top: 40px;
+}
+.hotel_detail_page .room_info strong {
+  font-weight: 700;
+  font-size: 16px;
+  display: block;
+  margin-bottom: 20px;
+}
+.hotel_detail_page .room_info .room {
+  display: flex;
+  gap: 0 20px;
+  margin-bottom: 30px;
+}
+.hotel_detail_page .room_info .room img {
+  width: 180px;
+  border-radius: 8px;
+  object-fit: cover;
+}
+.hotel_detail_page .room_info .room .room_tb {
+  width: 500px;
+}
+.hotel_detail_page .room_info .room .room_tb th {
+  background: #eee;
+  width: 140px;
+}
+.hotel_detail_page .room_info .room .room_tb th, td {
+  border: 1px solid #ddd;
+}
+.hotel_detail_page .room_info .room_tb td input[type="text"] {
+  width: 100%;
+  padding: 0 10px;
+  text-align: center;
+  border: none;
+  outline: none;
+}
+.hotel_detail_page .room_info .del_btn {
+  display: block;
+  margin-left: auto;
+  padding: 6px 16px;
+  height: 40px;
+  background: #e44848;
+  border: none;
+  border-radius: 4px;
+  color: var(--text-color-100);
+}
+.hotel_detail_page .btn_wrap {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0 20px;
+}
+.hotel_detail_page .btn_wrap button {
+  padding: 8px 20px;
+  border-radius: 4px;
+  border: none;
+  background: var(--primary-color);
+  color: var(--text-color-100);
+}
+.hotel_detail_page .btn_wrap .back_btn {
+  background: #333;
+}
+
+
+
+
+
+
+@media(max-width: 767px) {
+	.admin_page #header {
+		left: 180px;
+		width: calc(100% - 180px);
+	}
+	.admin_page #header .inner {
+		padding: 0 40px;
+	}
+	.admin_page .snb_wrap {
+		width: 180px;
+	}
+	.admin_page .contents .inner {
+		padding: 80px 10px 0;
+	}
+	.admin_page .admin_tit {
+		margin-bottom: 60px;
+	}
+	.admin_page .contents .member_list th {
+		font-size: 14px;
+		text-overflow: ellipsis;
+		white-space: nowrap;
+		overflow: hidden; 
+	}
+}

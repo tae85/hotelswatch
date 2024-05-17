@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	
+<mapper namespace="com.hotels.springboot.comments.CommentsRestService">
+	<!-- 이메일 가져오기 -->
+	<select id="getEmail"
+		parameterType="String"
+		resultType="com.hotels.springboot.comments.CommentsDTO">
+		select email, naver, google, apple from member where idx = #{idx}
+	</select>
+	
+	<!-- 후기 개수 -->
+	<select id="commentsCount"
+		resultType="String">
+		select count(*) from comments where hotel_idx = #{hotel_idx}
+	</select>
+
+	<!-- 후기 리스트 -->
+	<select id="commentsList"
+		parameterType="int"
+		resultType="com.hotels.springboot.comments.CommentsDTO">
+		select c.*, email, apple, naver, google, h.site 
+			from comments c 
+			    inner join member m on c.idx=m.idx  
+			    inner join hotel h on h.hotel_idx = c.hotel_idx
+		    where c.hotel_idx = #{hotel_idx} order by comment_date desc
+	</select>
+	
+	<!-- 후기 작성 -->
+	<insert id="commentsWrite"
+		parameterType="com.hotels.springboot.comments.CommentsDTO">
+		insert into comments (comment_idx, idx, hotel_idx, grade, comments)
+		values (seq_comments.nextval, #{idx}, #{hotel_idx}, #{grade}, #{comments})
+	</insert>
+	
+	<!-- 후기 수정 -->
+	<insert id="commentsEdit"
+		parameterType="com.hotels.springboot.comments.CommentsDTO">
+		update comments 
+			set grade=#{grade}, comments=#{comments}
+			where comment_idx = #{comment_idx}
+	</insert>
+	
+	<!-- 후기 삭제 -->
+	<delete id="commentsDelete"
+		parameterType="int">
+		delete from comments where comment_idx=#{comment_idx}
+	</delete>
+</mapper>

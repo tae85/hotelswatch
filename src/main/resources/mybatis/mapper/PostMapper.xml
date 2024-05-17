@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	
+<mapper namespace="com.hotels.springboot.post.PostService">
+	<select id="mainLists"
+		resultType="com.hotels.springboot.post.PostDTO"
+		parameterType="String">
+		select * from (
+			select tb.*, rownum rNum from (
+				select * from post where type=#{param1} order by postdate desc
+			) tb
+		)
+		where rNum<![CDATA[<=]]>#{param2}
+	</select>
+	
+	<select id="getTotalCount" resultType="int"
+		parameterType="String">
+		select count(*) from post where type=#{type}
+	</select>
+		
+	
+	<select id="postList"
+		resultType="com.hotels.springboot.post.PostDTO"
+		parameterType="com.hotels.springboot.post.PostDTO">
+		select * from (
+			select tb.*, rownum rNum from (
+				select * from post where type=#{type} order by postdate desc
+			) tb
+		)
+		where rNum<![CDATA[>=]]>#{start} and rNum<![CDATA[<=]]>#{end}
+	</select>
+	
+	<select id="selectOne"
+		parameterType="com.hotels.springboot.post.PostDTO"
+		resultType="com.hotels.springboot.post.PostDTO">
+		select * from post where id=#{id}
+	</select>
+	
+	<select id="postView" resultType="com.hotels.springboot.post.PostDTO"
+		parameterType="com.hotels.springboot.post.PostDTO">
+		select *  from post inner join member using(idx)
+			where post_idx=#{post_idx} and type=#{type}
+	</select>
+	
+	<insert id="postWrite"
+		parameterType="com.hotels.springboot.post.PostDTO">
+		insert into post (post_idx, idx, title, content, othumb, sthumb, ofile, sfile, type) values
+			(seq_post.nextval, #{idx}, #{title}, #{content}, #{othumb}, #{sthumb}, #{ofile}, #{sfile}, #{type})
+	</insert>
+	
+	<update id="postEdit" parameterType="com.hotels.springboot.post.PostDTO">
+		update post set
+		title=#{title}, content=#{content}, #{othumb}, #{sthumb}, ofile=#{ofile}, sfile=#{sfile}
+		where post_idx=#{post_idx}
+	</update>
+	
+	<delete id="postDelete">
+		delete from post where post_idx=#{param1}
+	</delete>
+</mapper>

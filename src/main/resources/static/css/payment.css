@@ -1,0 +1,511 @@
+/* 컬러 변수 */
+:root {
+  /* 포인트컬러 */
+  --primary-color: #0171BB;
+  --secondary-color: #2c4162;
+  /* 글자 공통 컬러 */
+  --text-color-100: #fff;
+  --text-color-200: #eee;
+  --text-color-300: #ddd;
+  --text-color-400: #ccc;
+  --text-color-500: #666;
+  --text-color-600: #222;
+  --text-color-900: #000;
+}
+
+
+.payment_page .inner {
+  max-width: 1280px;
+  padding: 0 16px;
+  margin: 0 auto;
+  display: flex;
+  gap: 0 20px;
+}
+.payment_page .pay_info_wrap {
+  width: 30%;
+  display: flex;
+  flex-direction: column;
+  gap: 16px 0;
+  padding-top: 100px;
+}
+.payment_page .pay_info_wrap .hotel_wrap {
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+}
+.payment_page .pay_info_wrap .hotel_wrap .site_txt {
+  display: block;
+  font-size: 12px;
+  margin-bottom: 4px;
+}
+.payment_page .pay_info_wrap .hotel_wrap .hotel_name {
+  display: block;
+  font-weight: 700;
+  margin-bottom: 6px;
+}
+.payment_page .pay_info_wrap .hotel_wrap .addr_txt {
+  display: block;
+  margin-bottom: 10px;
+  font-size: 13px;
+}
+.payment_page .pay_info_wrap .hotel_wrap .grade {
+  padding: 2px 6px;
+  margin-right: 6px;
+  font-size: 12px;
+  background: var(--primary-color);
+  color: var(--text-color-100);
+  border-radius: 4px;
+}
+.payment_page .pay_info_wrap .hotel_wrap .review_txt {
+  font-size: 12px;
+}
+.payment_page .pay_info_wrap .reserve_info_wrap {
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+}
+.payment_page .tit {
+  display: block;
+  font-size: 16px;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+.payment_page .pay_info_wrap .reserve_info_wrap .time_wrap {
+  display: flex;
+}
+.payment_page .reserve_info_wrap .time_wrap .checkin {
+  width: 50%;
+}
+.payment_page .reserve_info_wrap .time_wrap span {
+  display: block;
+  font-size: 13px;
+  margin-bottom: 6px;
+}
+.payment_page .reserve_info_wrap .time_wrap .date_txt {
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 1.7;
+  margin-bottom: 2px;
+}
+.payment_page .reserve_info_wrap .time_wrap .time_txt {
+  display: block;
+  color: var(--text-color-500);
+  margin-bottom: 14px;
+}
+.payment_page .reserve_info_wrap .time_wrap .checkout {
+  width: 50%;
+}
+.payment_page .reserve_info_wrap .total_stay_txt {
+  display: block;
+  margin-bottom: 2px;
+  font-size: 13px;
+}
+.payment_page .reserve_info_wrap .total_stay {
+  display: block;
+  font-size: 13px;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+.payment_page .reserve_info_wrap .option_wrap {
+  border-top: 1px solid #ddd;
+  padding-top: 10px;
+}
+.payment_page .reserve_info_wrap .option_wrap span {
+  display: block;
+  font-size: 13px;
+  margin-bottom: 4px;
+}
+.payment_page .reserve_info_wrap .option_wrap .option_txt {
+  display: block;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  margin-bottom: 10px;
+}
+.payment_page .reserve_info_wrap .option_wrap a {
+  font-size: 13px;
+  color: var(--primary-color);
+}
+.payment_page .pay_info_wrap .pay_history_wrap {
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  overflow: hidden;
+}
+.payment_page .pay_info_wrap .pay_history_wrap .tit {
+  padding: 10px;
+}
+.payment_page .pay_history_wrap .total_charge {
+  background: #B2D4EA;
+  padding: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.payment_page .pay_history_wrap .total_charge strong {
+  font-size: 20px;
+  font-weight: 700;
+}
+.payment_page .pay_history_wrap .total_charge .charge_wrap {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  text-align: right;
+}
+.payment_page .pay_history_wrap .total_charge .charge_wrap .basic_charge {
+  text-decoration: line-through;
+  color: #b60606;
+}
+.payment_page .pay_history_wrap .total_charge .charge_wrap strong {
+  display: block;
+  margin-bottom: 4px;
+}
+.payment_page .pay_history_wrap .total_charge .charge_wrap span {
+  font-size: 13px;
+}
+.payment_page .pay_info_wrap .cancel_wrap {
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 10px;
+}
+.payment_page .pay_info_wrap .cancel_wrap .tit {
+  margin-bottom: 14px;
+}
+.payment_page .pay_info_wrap .cancel_wrap .txt_wrap {
+  display: flex;
+  justify-content: space-between;
+}
+.payment_page .pay_info_wrap .cancel_wrap span {
+  font-size: 13px;
+}
+
+
+
+
+.payment_page .user_info_wrap {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 16px 0;
+  padding-top: 100px;
+}
+.payment_page .user_info_wrap .user_info {
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+}
+.payment_page .user_info_wrap .user_info .tip {
+  border: 1px solid #666;
+  border-radius: 4px;
+  background: #eee;
+  padding: 10px;
+  margin-bottom: 20px;
+}
+.payment_page .user_info_wrap .user_info .tip p {
+  font-size: 12px;
+  line-height: 1.6;
+  letter-spacing: 0.03em;
+}
+.payment_page .user_info_wrap .user_info .tip p span {
+  color: #b60606;
+}
+.payment_page .user_info_wrap .user_info .name_wrap {
+  display: flex;
+  gap: 0 16px;
+  margin-bottom: 16px;
+}
+.payment_page .user_info_wrap .user_info .name_wrap .last_name {
+  width: 50%;
+}
+.payment_page .user_info_wrap .user_info .name_wrap .first_name {
+  width: 50%;
+}
+.payment_page .user_info_wrap .user_info .info_tit {
+  font-size: 13px;
+  font-weight: 700;
+  display: block;
+  margin-bottom: 8px;
+}
+.payment_page .user_info_wrap .user_info .info_tit em {
+  color: #b60606;
+}
+.payment_page .user_info_wrap .user_info .info_form {
+  width: 100%;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  padding: 4px 10px;
+  margin-bottom: 4px;
+}
+.payment_page .user_info_wrap .user_info .mail_addr {
+  width: calc(50% - 8px);
+  margin-bottom: 16px;
+}
+.payment_page .user_info_wrap .user_info p {
+  font-size: 13px;
+  color: var(--text-color-500);
+}
+.payment_page .user_info_wrap .country_select {
+  width: 100%;
+  text-align: left;
+  position: relative;
+}
+.payment_page .user_info_wrap .country_select .select_btn {
+  width: 100%;
+  padding: 6px 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  background: #fff;
+  text-align: left;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.payment_page .user_info_wrap .country_select .select_btn::after {
+  content: '';
+  display: block;
+  position: relative;
+  top: 3px;
+  left: 0;
+  width: 10px;
+  height: 10px;
+  background: #222;
+  -webkit-mask: url("../images/arrow_icon.svg") no-repeat 0 0 / 100%;
+  mask: url("../images/arrow_icon.svg") no-repeat 0 0 / 100%;
+}
+.payment_page .user_info_wrap .country_select .select_list {
+  position: absolute;
+  height: 362px;
+  top: 40px;
+  left: 0;
+  width: 100%;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  background: #fff;
+  cursor: pointer;
+  overflow: scroll;
+  opacity: 0;
+  visibility: hidden;
+  z-index: 10;
+}
+.payment_page .user_info_wrap .country_select .select_list.on {
+  opacity: 1;
+  visibility: visible;
+}
+.payment_page .user_info_wrap .country_select .select_list .select_item {
+  padding: 10px;
+  transition: all 0.2s;
+}
+.payment_page .user_info_wrap .country_select .select_list .select_item:hover {
+  background: #eee;
+  transition: all 0.2s;
+}
+.payment_page .user_info_wrap .user_info .phone_num {
+  margin-bottom: 16px;
+  width: calc(50% - 8px);
+}
+.payment_page .user_info_wrap .user_info .phone_wrap {
+  display: flex;
+  border-radius: 4px;
+  overflow: hidden;
+  border: 1px solid #ddd;
+}
+.payment_page .user_info_wrap .user_info .phone_wrap select {
+  border: none;  
+  height: 28px;
+  padding: 0 6px;
+  outline: none;
+}
+.payment_page .user_info_wrap .user_info .phone_wrap input {
+  border-radius: 0;
+  border: none;
+  outline: none;
+}
+.payment_page .user_info_wrap .user_info .check_wrap label {
+  font-size: 13px;
+  color: var(--text-color-600);
+}
+.payment_page .user_info_wrap .user_info .check_wrap p {
+  font-size: 12px;
+  margin-left: 30px;
+}
+.payment_page .user_info_wrap .room_info {
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+}
+.payment_page .user_info_wrap .room_info .room_tit {
+  font-size: 13px;
+  font-weight: 700;
+  display: block;
+  margin-bottom: 6px;
+}
+.payment_page .user_info_wrap .room_info .room_tit em {
+  font-weight: 400;
+}
+.payment_page .user_info_wrap .room_info .name_wrap {
+  padding-top: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px 0;
+}
+.payment_page .user_info_wrap .room_info .name_wrap input[type="text"] {
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  width: calc(50% - 8px);
+  padding: 4px 10px;
+}
+.payment_page .user_info_wrap .request_wrap {
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+}
+.payment_page .user_info_wrap .request_wrap p {
+  font-size: 13px;
+  margin-bottom: 10px;
+}
+.payment_page .user_info_wrap .request_wrap .request_tit {
+  display: block;
+  font-weight: 700;
+  margin-bottom: 8px;
+  font-size: 14px;
+}
+.payment_page .user_info_wrap .request_wrap .request_tit em {
+  font-weight: 400;
+}
+.payment_page .user_info_wrap .request_wrap textarea {
+  border: 1px solid #666;
+  border-radius: 4px;
+  background: none;
+}
+.payment_page .user_info_wrap .btn_wrap {
+  display: flex;
+  gap: 0 12px;
+  justify-content: flex-end;
+  align-items: center;
+  margin-bottom: 80px;
+}
+.payment_page .user_info_wrap .btn_wrap span {
+  color: var(--primary-color);
+}
+.payment_page .user_info_wrap .btn_wrap a {
+  width: 160px;
+  padding: 10px;
+  text-align: center;
+  background: #333;
+  border-radius: 4px;
+  color: var(--text-color-100);
+}
+.payment_page .user_info_wrap .btn_wrap .next_btn {
+  background: var(--primary-color);
+}
+.payment_page .user_info_wrap .btn_wrap .next_btn::after {
+  content: '';
+  width: 12px;
+  height: 12px;
+  display: inline-block;
+  background: #fff;
+  -webkit-mask: url("../images/arrow_icon.svg") no-repeat 0 0 / 100%;
+  mask: url("../images/arrow_icon.svg") no-repeat 0 0 / 100%;
+  transform: rotateZ(-90deg);
+  margin-left: 14px;
+  vertical-align: -1px;
+}
+
+.complete_page .complete {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
+.complete_page .complete strong {
+  font-size: 34px;
+  font-weight: 700;
+  display: block;
+  margin-bottom: 20px;
+  letter-spacing: 0.05em;
+}
+.complete_page .complete span {
+  font-size: 20px;
+  display: block;
+}
+
+.complete_page .complete .hotel_info {
+  padding: 40px 0;
+  margin: 0 auto 80px;
+  display: flex;
+  justify-content: center;
+  gap: 0 30px;
+}
+.complete_page .complete .hotel_info img {
+  width: 200px;
+  height: 200px;
+  border-radius: 4px;
+}
+.complete_page .complete .hotel_info .txt_wrap {
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+}
+.complete_page .complete .hotel_info .name {
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+.complete_page .complete .hotel_info .room {
+  font-size: 16px;
+  margin-bottom: 10px;
+}
+.complete_page .complete .hotel_info p {
+  font-size: 16px;
+}
+.complete_page .complete .hotel_info p em {
+  font-weight: 700;
+  margin-right: 10px;
+}
+.complete_page .complete .hotel_info .price_wrap {
+  margin-top: auto;
+}
+.complete_page .complete .hotel_info .price_wrap p {
+  font-weight: 700;
+}
+.complete_page .complete .hotel_info .price {
+  font-size: 24px;
+  color: #b60606;
+  margin-bottom: 0;
+}
+.complete_page .complete .btn_wrap {
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  gap: 100px;
+}
+.complete_page .complete .btn_wrap a {
+  border-radius: 4px;
+  background: var(--primary-color);
+  color: var(--text-color-100);
+  font-size: 16px;
+  width: 140px;
+  padding: 10px;
+}
+
+
+
+@media(max-width: 767px) {
+	.payment_page .pay_info_wrap .cancel_wrap .tit {
+		font-size: 13px;	
+	}
+	.payment_page .pay_info_wrap {
+		width: 50%;
+	}
+	.payment_page .pay_info_wrap .cancel_wrap .txt_wrap {
+		flex-direction: column;
+		gap: 4px 0;
+	}
+	.payment_page .pay_history_wrap .total_charge strong {
+		font-size: 18px;
+	}
+	.payment_page .pay_history_wrap .total_charge .charge_wrap {
+		width: 65%
+	}
+	.payment_page .pay_history_wrap .total_charge .charge_wrap span {
+		font-size: 12px;
+	}
+}

@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	
+<mapper namespace="com.hotels.springboot.hotel.SearchService">
+	<!-- 검색 결과 개수 -->
+	<select id="totalHotel" resultType="int"
+		parameterType="com.hotels.springboot.hotel.SearchDTO">
+		select count(*) from hotel
+		<if test="searchWord!=null and !searchWord.equals('')">
+			where country like '%'||#{searchWord}||'%'
+			or city like '%'||#{searchWord}||'%'
+			or province like '%'||#{searchWord}||'%'
+			or street like '%'||#{searchWord}||'%'
+		</if>
+	</select>
+	
+	<!-- 호텔리스트 ajax -->
+	<select id="hotelList"
+		parameterType="com.hotels.springboot.hotel.SearchDTO"
+		resultType="com.hotels.springboot.hotel.HotelDTO">
+        select * from (
+		    select h.*, nvl(grade, 0) grade, p.price, nvl(s.total_comment, 0) total_comment , 
+		        trunc(to_number(DISTANCE_WGS84(#{ht_lat}, #{ht_lng}, h.ht_lat, h.ht_lng)),3) AS disKM  
+		                from hotel h
+		                inner join (select * from hotel 
+		                    inner join (select min(price) price, hotel_idx from room group by hotel_idx) 
+		                        using(hotel_idx) 
+			                      <if test="searchWord != null">
+				                    where 
+									country like '%'||#{searchWord}||'%' 
+									or city like '%'||#{searchWord}||'%' 
+									or province like '%'||#{searchWord}||'%' 
+									or street like '%'||#{searchWord}||'%'
+				                  </if>
+		                        ) p 
+		                    on p.hotel_idx = h.hotel_idx
+		                left outer join (select hotel_idx, avg(grade) grade, count(*) total_comment 
+		                    from (select c.hotel_idx, hotel, c.grade
+		                        from comments c
+		                            join hotel h on c.hotel_idx = h.hotel_idx) 
+		                    group by hotel_idx) s
+		                    on h.hotel_idx = s.hotel_idx
+		            where price between #{minPrice} and #{maxPrice}) where grade <![CDATA[>=]]> #{grade}
+	</select>
+	
+	<!-- 호텔 검색 -->
+	<select id="searchHotel"
+		parameterType="com.hotels.springboot.hotel.SearchDTO"
+		resultType="com.hotels.springboot.hotel.HotelDTO">
+		select * from hotel inner join 
+			(select min(price) price, hotel_idx from room group by hotel_idx) 
+			using(hotel_idx) 
+		<!-- 검색어가 있는 경우 where 절을 추가한다. -->
+		<if test="searchWord != null">
+			where 
+			country like '%'||#{searchWord}||'%' 
+			or city like '%'||#{searchWord}||'%' 
+			or street like '%'||#{searchWord}||'%'
+		</if>
+		order by price
+	</select>
+	
+	<select id="viewHotel" 
+		resultType="com.hotels.springboot.hotel.HotelDTO">
+		select * from hotel inner join
+			(select * from room 
+				where price = (select min(price) from room 
+					where hotel_idx=#{hotel_idx})) 
+				using(hotel_idx) 
+			where hotel_idx=#{hotel_idx}
+	</select>
+	<select id="hotelGrade" 
+		resultType="Double">
+		select grade from hotel h
+    left outer join (select hotel_idx, avg(grade) grade from 
+    (select c.hotel_idx, hotel, c.grade
+        from comments c
+            join hotel h on c.hotel_idx = h.hotel_idx) 
+    group by hotel_idx) s
+    on h.hotel_idx = s.hotel_idx where h.hotel_idx = #{hotel_idx}
+	</select>
+	
+	<select id="viewRoom" 
+		parameterType="com.hotels.springboot.hotel.HotelDTO"
+		resultType="com.hotels.springboot.hotel.HotelDTO">
+		select * from hotel 
+			inner join room using(hotel_idx) 
+			where hotel_idx=#{hotel_idx}
+			order by price
+	</select>
+	
+	<select id="selectHotel"
+		parameterType="int"
+		resultType="com.hotels.springboot.hotel.HotelDTO">
+		select * from room
+    		where hotel_idx = #{hotel_idx}
+	</select>
+	
+	<select id="selectRoom"
+		parameterType="int"
+		resultType="com.hotels.springboot.hotel.HotelDTO">
+		select * from room 
+    		join hotel using(hotel_idx) where room_idx = #{room_idx}
+	</select>
+	
+	<!-- 호텔 등록  -->
+	<insert id="writeHotel"
+		parameterType="com.hotels.springboot.hotel.HotelDTO">
+		insert into post (post_idx, idx, title, content, ofile, sfile, type) values
+			(seq_post.nextval, #{idx}, #{title}, #{content}, #{ofile}, #{sfile}, #{type})
+	</insert>
+	
+	<!-- 호텔 수정  -->
+	<update id="editHotel" parameterType="com.hotels.springboot.hotel.HotelDTO">
+		update post set
+		title=#{title}, content=#{content}, ofile=#{ofile}, sfile=#{sfile}
+		where post_idx=#{post_idx}
+	</update>
+	
+	<!-- 호텔 삭제  -->
+	<delete id="deleteHotel">
+		delete from post where post_idx=#{param1}
+	</delete>
+	
+	<!-- 객실 -->
+	<select id="roomList"
+		resultType="com.hotels.springboot.hotel.SearchDTO"
+		parameterType="com.hotels.springboot.hotel.HotelDTO">
+		select * from hotel
+	</select>
+	
+	<!-- 검색어 업데이트 -->
+	<select id="updateKeyword" resultType="int">
+		update table memeber set search_keyword = #{search_keyword} where idx = #{idx}
+	</select>
+	
+	<!-- 후기 -->
+	<!-- <select id="comment"
+		parameterType="com.hotels.springboot.hotel.ParameterDTO"
+		resultType="com.hotels.springboot.hotel.HotelDTO">
+		select c.*, m.nickname, h.site 
+			from comments c 
+			    inner join member1 m on c.idx=m.idx  
+			    inner join hotel h on h.hotel_idx = c.hotel_idx
+		    where c.hotel_idx = #{hotel_idx}
+	</select> -->
+</mapper>

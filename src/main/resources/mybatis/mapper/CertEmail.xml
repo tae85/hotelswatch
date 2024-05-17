@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hotels.springboot.jdbc.IcertEmailDAO">
+	<insert id="write"
+		parameterType="com.hotels.springboot.jdbc.CertEmailDTO">
+		insert into certemail (email, cert_num, expiry_time)
+		values (#{email}, #{cert_num},#{expiry_time})
+	</insert>
+
+	<select id="view"
+		resultType="com.hotels.springboot.jdbc.CertEmailDTO"
+		parameterType="com.hotels.springboot.jdbc.CertEmailDTO">
+		SELECT * FROM certemail WHERE email=#{email}
+	</select>
+
+	<delete id="delete">
+		DELETE FROM certemail WHERE email=#{param1}
+	</delete>
+
+	<delete id="deleteExpiredEmails">
+		DELETE FROM certemail WHERE expiry_time <![CDATA[<]]> sysdate
+	</delete>
+
+
+</mapper>
+

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	
+<mapper namespace="com.hotels.springboot.map.ISearchRadius">
+	<select id="searchCount" resultType="int">
+		select count(*) from hotel
+		where trunc(to_number(distance_wgs84(#{param2}, #{param3},
+			ht_lat, ht_lng)), 5)<![CDATA[<=]]>#{param1}
+	</select>
+	<select id="searchRadius" 
+		resultType="com.hotels.springboot.hotel.HotelDTO">
+		select * from (
+		    select tb.*, rownum rNum from (
+		        select h.*, nvl(grade, 0) grade, p.price, trunc(to_number(DISTANCE_WGS84(#{param2}, #{param3}, h.ht_lat, h.ht_lng)),5) AS disKM  
+		            from hotel h
+		            inner join (select * from hotel 
+		                inner join (select min(price) price, hotel_idx from room group by hotel_idx) 
+		                    using(hotel_idx) 
+		                  <if test="param6 != null">
+		                    where 
+							country like '%'||#{param6}||'%' 
+							or city like '%'||#{param6}||'%' 
+							or province like '%'||#{param6}||'%' 
+							or street like '%'||#{param6}||'%'
+		                  </if>
+		                    ) p 
+		                on p.hotel_idx = h.hotel_idx
+		            left outer join (select hotel_idx, avg(grade) grade, count(*) total_comment 
+		                from (select c.hotel_idx, hotel, c.grade
+		                    from comments c
+		                        join hotel h on c.hotel_idx = h.hotel_idx) 
+		                group by hotel_idx) s
+		                on h.hotel_idx = s.hotel_idx
+		            where price between 0 and 99999999
+		                and trunc(to_number(DISTANCE_WGS84(#{param2}, #{param3},
+                			h.ht_lat, h.ht_lng)),5) <![CDATA[<=]]> 100
+		         ) tb
+		    )
+		    where rNum between ${param4} and ${param5} and grade <![CDATA[>=]]> 0
+	</select>
+</mapper>

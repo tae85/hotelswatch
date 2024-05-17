@@ -1,0 +1,856 @@
+/* hotel_view 페이지 */
+.room_page .inner {
+  max-width: 1280px;
+  padding: 0 16px;
+  margin: 0 auto;
+}
+.room_page .tab_menu {
+  display: flex;
+  justify-content: space-between;
+  background: #fff;
+  position: fixed;
+  left: 50%;
+  transform: translate(-50%, 0);
+  z-index: 999;
+  width: 100%;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s;
+}
+.room_page .tab_menu.hidden {
+  transform: translate(-50%, -60px);
+  transition: all 0.3s;
+}
+.room_page .tab_menu li {
+  width: 252px;
+  text-align: center;
+  position: relative;
+}
+.room_page .tab_menu li::after {
+  content: '';
+  display: block;
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0px;
+  border-bottom: 2px solid #222;
+  transition: all 0.5s;
+}
+.room_page .tab_menu li.active::after {
+  width: 100%;
+  transition: all 0.5s;
+}
+.room_page .tab_menu a {
+  display: block;
+  line-height: 60px;
+  font-size: 16px;
+  color: var(--text-color-500);
+  transition: all 0.3s;
+}
+.room_page .tab_menu li.active a {
+  color: var(--text-color-600);
+  font-weight: 700;
+  transition: all 0.3s;
+}
+.room_page .info_wrap {
+	padding-top: 90px;
+}
+.room_page .info_top {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 30px;
+}
+.room_page .info_top .left h2 {
+  font-size: 24px;
+  font-weight: 700;
+  line-height: 1.2;
+  margin-bottom: 6px;
+}
+.room_page .info_top .left .addr {
+  display: block;
+  margin-bottom: 16px;
+}
+.room_page .info_top .left .grade {
+  padding: 4px 10px;
+  border-radius: 4px;
+  background: var(--primary-color);
+  color: var(--text-color-100);
+  font-weight: 700;
+}
+.room_page .info_top .left .grade em {
+  font-weight: 400;
+}
+/* Swiper */
+.info_bottom {
+  margin: 80px auto;
+  overflow: hidden;
+}
+
+.info_bottom .swiper {
+  width: 100%;
+  height: 100%;
+}
+.swiper-slide {
+  text-align: center;
+  font-size: 18px;
+  background: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 400px;
+  height: 400px;
+  border-radius: 8px;
+  overflow: hidden;
+}
+.swiper-slide img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.swiper-pagination {
+  margin-top: 16px;
+  position: inherit;
+}
+.swiper-pagination-bullet {
+	margin-left: 10px;
+}
+.swiper-pagination-bullet-active {
+	width: 30px;
+	border-radius: 4px;
+	margin-right: 10px;
+	background: var(--primary-color);
+}
+.room_page .info_top .right {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+.room_page .info_top .right .price_wrap span {
+  display: block;
+  margin-bottom: 2px;
+}
+.room_page .info_top .right .price_wrap a {
+  font-size: 24px;
+  font-weight: 700;
+  color: #e81212;
+  line-height: 1;
+}
+.room_page .info_top .right .site_name {
+  font-size: 12px;
+  margin-bottom: 2px;
+}
+.room_page .info_top .right .btn_wrap {
+  display: flex;
+  gap: 0 6px;
+}
+.room_page .info_top .right .btn_wrap .i_btn {
+  display: block;
+  width: 36.5px;
+  height: 36.5px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+.room_page .info_top .right .btn_wrap .i_btn:hover::after {
+  background: var(--primary-color);
+}
+
+/* info icon setting */
+.room_page .info_top .right .btn_wrap .map_btn {
+  position: relative;
+}
+.room_page .info_top .right .btn_wrap .map_btn::after {
+  content: '';
+  width: 20px;
+  height: 20px;
+  display: block;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: #999;
+  -webkit-mask: url('../images/maps_icon.svg') no-repeat 0 0 / 100%;
+  mask: url('../images/maps_icon.svg') no-repeat 0 0 / 100%;
+}
+.room_page .info_top .right .btn_wrap .wish_btn {
+  position: relative;
+}
+.room_page .info_top .right .btn_wrap .wish_btn::after {
+  content: '';
+  width: 20px;
+  height: 20px;
+  display: block;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: #999;
+  -webkit-mask: url('../images/wish_icon.svg') no-repeat 0 0 / 100%;
+  mask: url('../images/wish_icon.svg') no-repeat 0 0 / 100%;
+}
+.room_page .info_top .right .btn_wrap .wish_btn.active::after {
+  background: var(--primary-color);
+  -webkit-mask: url('../images/wish_icon_active.svg') no-repeat 0 0 / 100%;
+  mask: url('../images/wish_icon_active.svg') no-repeat 0 0 / 100%;
+}
+.room_page .info_top .right .btn_wrap .share_btn {
+  position: relative;
+}
+.room_page .info_top .right .btn_wrap .share_btn::after {
+  content: '';
+  width: 20px;
+  height: 20px;
+  display: block;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: #999;
+  -webkit-mask: url('../images/share_icon.svg') no-repeat 0 0 / 100%;
+  mask: url('../images/share_icon.svg') no-repeat 0 0 / 100%;
+}
+
+.room_page .info_top .right .btn_wrap .site_go_btn {
+  display: block;
+  background: var(--primary-color);
+  color: var(--text-color-100);
+  font-weight: 700;
+  padding: 6px 40px;
+  border-radius: 4px;
+}
+
+/* room_choice_wrap */
+.room_page .room_choice_wrap {
+  margin-bottom: 60px;
+}
+.room_page .room_wrap {
+  border-radius: 8px;
+  padding: 30px 20px;
+  margin-bottom: 40px;
+  border: 1px solid #ddd;
+}
+.room_page .room_choice_wrap .room_tit {
+  margin-bottom: 40px;
+}
+.room_page .room_wrap .type_tit {
+  display: block;
+  font-size: 18px;
+  font-weight: 700;
+  margin-bottom: 20px;
+}
+.room_page .room_wrap .contents_wrap {
+  display: flex;
+  gap: 0 20px;
+}
+.room_page .room_wrap .room_img {
+  width: 210px;
+  height: 160px;
+  border-radius: 8px;
+}
+.room_page .room_wrap .contents_right {
+  width: 80%;
+  border-radius: 8px;
+  overflow: hidden;
+  border: 1px solid #ddd;
+}
+.room_page .room_wrap .room_tb {
+  height: 100%;
+}
+.room_page .room_wrap .room_tb th {
+  background: #eee;
+}
+.room_page .room_wrap .room_tb th, td {
+  padding: 8px 14px;
+}
+.room_page .room_wrap .room_tb td + td {
+  border-left: 1px solid #ddd;
+}
+.room_page .room_wrap .room_tb ul {
+  display: flex;
+  flex-direction: column;
+  gap: 10px 0;
+  text-align: left;
+}
+.room_page .room_wrap .room_tb ul li::before {
+  content: '';
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  margin-right: 10px;
+  vertical-align: middle;
+  background: #222;
+  -webkit-mask: url("../images/noreund_i.svg") no-repeat 0 0 / 100%;
+  mask: url("../images/noreund_i.svg") no-repeat 0 0 / 100%;
+}
+.room_page .room_wrap .room_tb ul .now_txt {
+  color: var(--primary-color);
+}
+.room_page .room_wrap .room_tb ul .now_txt::before {
+  background: var(--primary-color);
+  -webkit-mask: url("../images/thunder_i.svg") no-repeat 0 0 / 100%;
+  mask: url("../images/thunder_i.svg") no-repeat 0 0 / 100%;
+}
+.room_page .room_wrap .room_tb ul .payment_txt::before {
+  -webkit-mask: url("../images/card_i.svg") no-repeat 0 0 / 100%;
+  mask: url("../images/card_i.svg") no-repeat 0 0 / 100%;
+}
+.room_page .room_wrap .room_tb .option_wrap {
+  position: relative;
+}
+.room_page .room_wrap .q_btn {
+  position: absolute;
+  top: 8px;
+  right: 14px;
+  width: 20px;
+  height: 20px;
+  border: none;
+  background: #ddd;
+  -webkit-mask: url("../images/question_icon.svg") no-repeat 0 0 / 100%;
+  mask: url("../images/question_icon.svg") no-repeat 0 0 / 100%;
+  transition: all 0.2s;
+}
+.room_page .room_wrap .q_btn:hover {
+  background: #222;
+  transition: all 0.2s;
+}
+.room_page .room_tb .people_num {
+  position: relative;
+}
+.room_page .room_wrap .room_tb .people_num::after {
+  content: '';
+  display: block;
+  width: 30px;
+  height: 30px;
+  background: url("../images/people2_icon.svg") no-repeat center / 100%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.room_page .room_wrap.deluxe .room_tb .people_num::after {
+  width: 48px;
+  height: 48px;
+  background: url("../images/people3_icon.svg") no-repeat center / 100%;
+}
+.room_page .room_wrap.superior .room_tb .people_num::after {
+  width: 64px;
+  height: 64px;
+  background: url("../images/people4_icon.svg") no-repeat center / 100%;
+}
+.room_page .room_wrap .room_tb .pay_wrap {
+  height: 100%;
+  display: flex;
+  gap: 14px;
+  align-items: center;
+}
+.room_page .room_tb .pay_wrap .price {
+  width: 50%;
+  text-align: right;
+}
+.room_page .room_tb .pay_wrap .price_txt {
+  display: block;
+  font-size: 20px;
+  font-weight: 700;
+  color: #E81212;
+}
+.room_page .room_tb .pay_wrap .tax_txt {
+  font-size: 12px;
+}
+.room_page .room_tb .pay_wrap .reserve_wrap {
+  width: 50%;
+}
+.room_page .room_tb .pay_wrap .reserve_btn {
+  display: block;
+  background: var(--primary-color);
+  color: var(--text-color-100);
+  border-radius: 4px;
+  width: 100%;
+  padding: 8px 10px;
+}
+
+.room_page .room_tit {
+  display: block;
+  text-align: center;
+  font-size: 18px;
+  font-weight: 700;
+  padding-top: 30px;
+  margin-bottom: 10px;
+  position: relative;
+}
+.room_page .room_tit::after {
+  content: '';
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 50%;
+  border: 1px solid #222;
+}
+/* 주요 공지사항 */
+.room_page .notice_wrap {
+  margin-bottom: 60px;
+}
+.room_page .notice_wrap .txt_wrap {
+  width: 60%;
+  margin: 0 auto;
+  padding-top: 30px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.room_page .notice_wrap .txt_wrap .txt_left {
+  text-align: left;
+}
+.room_page .notice_wrap .txt_wrap strong {
+  font-weight: 700;
+  margin-right: 10px;
+}
+.room_page .notice_wrap .txt_wrap .checkin {
+  margin-bottom: 14px;
+}
+.room_page .notice_wrap .txt_wrap .txt_right strong {
+  display: block;
+  margin: 0 0 4px;
+}
+
+/* 지도 */
+ .room_page #map_wrap {
+  	position: static;
+  }
+.room_page .map_wrap {
+  margin: 0 auto 60px;
+  text-align: center;
+}
+.room_page .map_wrap span {
+  display: block;
+  color: var(--text-color-500);
+  margin-bottom: 40px;
+}
+.room_page .map_wrap .map {
+  height: 420px;
+  background: #ddd;
+}
+
+/* 후기 */
+.room_page .review_wrap {
+  margin-bottom: 80px;
+}
+.room_page .review_wrap .grade_wrap {
+  padding-top: 40px;
+  margin: 0 auto 60px;
+  width: 60%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.room_page .review_wrap .grade_wrap .left {
+  text-align: center;
+}
+.room_page .review_wrap .grade_wrap .left strong {
+  font-size: 30px;
+  font-weight: 700;
+  display: block;
+}
+.room_page .review_wrap .grade_wrap .left strong em {
+  font-weight: 400;
+  color: var(--text-color-400);
+}
+.room_page .review_wrap .grade_wrap .right li {
+  display: flex;
+  gap: 0 10px;
+}
+.room_page .review_wrap .grade_wrap .right li + li {
+  margin-top: 10px;
+}
+.room_page .review_wrap .grade_wrap .right span {
+  font-weight: 700;
+}
+.room_page .review_wrap .grade_wrap .right .graph {
+  width: 200px;
+  background: #ddd;
+  border-radius: 20px;
+  position: relative;
+}
+.room_page .review_wrap .right .graph::after {
+  content: '';
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 93%;
+  height: 100%;
+  background: var(--primary-color);
+  border-radius: 20px;
+}
+.room_page .review_wrap .right li:nth-child(2) .graph::after {
+  width: 90%;
+}
+.room_page .review_wrap .right li:nth-child(3) .graph::after {
+  width: 86%;
+}
+.room_page .review_wrap .right li:nth-child(4) .graph::after {
+  width: 83%;
+}
+
+.room_page .review_wrap .review_list_wrap {
+  border-top: 1px solid #ddd;
+  border-bottom: 1px solid #ddd;
+}
+.room_page .review_wrap .review_list_wrap li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 0;
+}
+.room_page .review_wrap .review_list_wrap li .profile_img_wrap {
+  width: 30px;
+  height: 30px;
+  border-radius: 15px;
+  background-color: #ddd;
+  align-self: flex-start;
+}
+.room_page .review_wrap .review_list_wrap li + li {
+  border-top: 1px solid #ddd;
+}
+.room_page .review_wrap .review_list_wrap li .review_info_wrap {
+  margin: 0 auto 0 10px;
+}
+.room_page .review_wrap .review_list_wrap li .review_info_wrap span {
+  display: block;
+  font-weight: 700;
+}
+.room_page .review_wrap .review_list_wrap li .review_info_wrap strong {
+  display: inline-block;
+  margin-left: 5px;
+  font-weight: 700;
+}
+.room_page .review_wrap .review_list_wrap li .review_info_wrap em {
+  color: #666;
+}
+.room_page .review_wrap .pagination {
+  padding-top: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.room_page .review_wrap .pagination span {
+  display: block;
+  background: #eee;
+  height: 30px;
+  padding: 0 10px;
+  border-radius: 4px;
+}
+.room_page .review_wrap .pagination .num_btn {
+  width: 30px;
+  height: 30px;
+  border: none;
+  border-radius: 4px;
+  margin-left: 10px;
+  position: relative;
+  background: #eee;
+}
+.room_page .review_wrap .pagination .num_btn::after {
+  content: '';
+  display: block;
+  width: 12px;
+  height: 12px;
+  position: absolute;
+  top: 50%;
+  left: 12px;
+  transform: translateY(-50%) rotateZ(-90deg);
+  background: url('../images/arrow_icon.svg') no-repeat 0 0 / 100%;
+}
+
+/* 객실 옵션 상세 모달 */
+.room_page .option_modal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 670px;
+  background: #fff;
+  border-radius: 8px;
+  padding: 20px;
+  z-index: 10001;
+  display: none;
+}
+.room_page .option_modal ul li + li {
+  margin-top: 20px;
+}
+.room_page .option_modal ul li strong {
+  display: block;
+  font-size: 16px;
+  font-weight: 700;
+  margin-bottom: 6px;
+}
+.room_page .option_modal .close_btn {
+  width: 20px;
+  height: 20px;
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background: url("../images/close.svg") no-repeat 0 0 / 100%;
+  border: none;
+}
+.room_page .option_modal_bg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 10000;
+  display: none;
+}
+.room_page .notice_wrap {
+  margin-bottom: 60px;
+}
+.room_page .notice_wrap .txt_wrap {
+  width: 60%;
+  margin: 0 auto;
+  padding-top: 30px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.room_page .notice_wrap .txt_wrap .txt_left {
+  text-align: left;
+}
+.room_page .notice_wrap .txt_wrap strong {
+  font-weight: 700;
+  margin-right: 10px;
+}
+.room_page .notice_wrap .txt_wrap .checkin {
+  margin-bottom: 14px;
+}
+.room_page .notice_wrap .txt_wrap .txt_right strong {
+  display: block;
+  margin: 0 0 4px;
+}
+
+/* 후기 */
+.room_page .review_wrap {
+  margin-bottom: 80px;
+}
+.room_page .review_wrap .grade_wrap {
+  padding-top: 40px;
+  margin: 0 auto 60px;
+  width: 60%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.room_page .review_wrap .grade_wrap .left {
+  text-align: center;
+}
+.room_page .review_wrap .grade_wrap .left strong {
+  font-size: 30px;
+  font-weight: 700;
+  display: block;
+}
+.room_page .review_wrap .grade_wrap .left strong em {
+  font-weight: 400;
+  color: var(--text-color-400);
+}
+.room_page .review_wrap .grade_wrap .right li {
+  display: flex;
+  gap: 0 10px;
+}
+.room_page .review_wrap .grade_wrap .right li + li {
+  margin-top: 10px;
+}
+.room_page .review_wrap .grade_wrap .right span {
+  font-weight: 700;
+}
+.room_page .review_wrap .grade_wrap .right .graph {
+  width: 200px;
+  background: #ddd;
+  border-radius: 20px;
+  position: relative;
+}
+.room_page .review_wrap .right .graph::after {
+  content: '';
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 93%;
+  height: 100%;
+  background: var(--primary-color);
+  border-radius: 20px;
+}
+.room_wrap .review_wrap .right li:nth-child(2) .graph::after {
+  width: 90%;
+}
+.room_wrap .review_wrap .right li:nth-child(3) .graph::after {
+  width: 86%;
+}
+.room_wrap .review_wrap .right li:nth-child(4) .graph::after {
+  width: 83%;
+}
+
+.room_wrap .review_wrap .review_list_wrap {
+  border-top: 1px solid #ddd;
+  border-bottom: 1px solid #ddd;
+}
+.room_wrap .review_wrap .review_list_wrap li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 0;
+}
+.room_wrap .review_wrap .review_list_wrap li .profile_img_wrap {
+  width: 30px;
+  height: 30px;
+  border-radius: 15px;
+  background-color: #ddd;
+  align-self: flex-start;
+}
+.room_wrap .review_wrap .review_list_wrap li + li {
+  border-top: 1px solid #ddd;
+}
+.room_wrap .review_wrap .review_list_wrap li .review_info_wrap {
+  margin: 0 auto 0 10px;
+}
+.room_wrap .review_wrap .review_list_wrap li .review_info_wrap span {
+  display: block;
+  font-weight: 700;
+}
+.room_wrap .review_wrap .review_list_wrap li .review_info_wrap strong {
+  display: inline-block;
+  margin-left: 5px;
+  font-weight: 700;
+}
+.room_wrap .review_wrap .review_list_wrap li .review_info_wrap em {
+  color: #666;
+}
+.room_wrap .review_wrap .pagination {
+  padding-top: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.room_wrap .review_wrap .pagination span {
+  display: block;
+  background: #eee;
+  height: 30px;
+  padding: 0 10px;
+  border-radius: 4px;
+}
+.room_wrap .review_wrap .pagination .num_btn {
+  width: 30px;
+  height: 30px;
+  border: none;
+  border-radius: 4px;
+  margin-left: 10px;
+  position: relative;
+  background: #eee;
+}
+.room_page .review_wrap .pagination .num_btn::after {
+  content: '';
+  display: block;
+  width: 12px;
+  height: 12px;
+  position: absolute;
+  top: 50%;
+  left: 12px;
+  transform: translateY(-50%) rotateZ(-90deg);
+  background: url('../images/arrow_icon.svg') no-repeat 0 0 / 100%;
+}
+
+
+
+
+@media (max-width: 767px) {
+	.info_bottom {
+  	margin: 0 auto;
+  }
+  .swiper-pagination {
+  	margin: 16px 0 40px;
+  }
+  .room_page .tab_menu a {
+  	font-size: 14px;
+  }
+  .room_page .info_top .left h2 {
+  	font-size: 22px;
+  }
+  .room_page .info_top .left .addr {
+  	font-size: 14px;
+  }
+  .room_page .info_top .right .price_wrap a {
+  	font-size: 22px;
+  }
+  .room_page .view_tit {
+  	margin-bottom: 16px;
+  	font-size: 16px;
+  }
+  .room_page .fee_wrap table {
+  	margin-bottom: 4px;
+  }
+  .room_page .fee_wrap table th {
+  	font-size: 13px;
+  }
+  .room_page .fee_wrap table td {
+  	padding: 10px 0;
+  }
+  .room_page .fee_wrap table td:first-child {
+  	paading-left: 10px;
+  	font-size: 13px;
+  }
+  .room_page .fee_wrap tbody .site_go_btn {
+  	padding: 4px 10px;
+  	font-size: 13px;
+  }
+  .room_page .notice_wrap .txt_wrap {
+  	width: 80%;
+  	font-size: 13px;
+  }
+  .room_page .map_wrap span {
+  	margin-bottom: 30px;
+  	font-size: 13px;
+  }
+  .room_page .map_wrap .map {
+  	position: s
+  }
+  
+	.room_page .room_wrap {
+		padding: 16px;
+		margin-bottom: 30px;
+	}
+	.room_page .room_wrap .room_tb th {
+		font-size: 14px;
+	}
+	.room_page .room_wrap .room_tb .option_wrap ul li {
+		font-size: 13px;
+	}
+	.room_page .room_tb .pay_wrap .price_txt {
+		font-size: 16px;
+	}
+  .room_page .review_wrap .grade_wrap {
+  	padding-top: 20px;
+  	margin-bottom: 40px;
+  }
+  .room_page .review_wrap .grade_wrap .left strong {
+  	font-size: 24px;
+  }
+  .room_page .review_wrap .grade_wrap .left span {
+  	font-size: 14px;
+  }
+  .room_page .review_wrap .review_list_wrap li .profile_img_wrap {
+  	width: 44px;
+  }
+  .room_page .review_wrap .review_list_wrap .review_info_wrap em {
+  	font-size: 14px;
+  }
+  .room_page .review_wrap .review_list_wrap .review_info_wrap p {
+  	font-size: 13px;
+  }
+  .room_page .review_wrap .pagination span {
+  	height: 24px;
+  	font-size: 13px;
+  }
+  .room_page .review_wrap .pagination .num_btn {
+  	height: 24px;
+  }
+}
